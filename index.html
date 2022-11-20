@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://kit.fontawesome.com/1c46bab9d2.js" crossorigin="anonymous"></script>
+   <title>Clock</title>
+</head>
+
+<body>
+   <div class="container">
+      <div class="pages">
+         <div class="page" id="stopwatch-page">
+            <div class="wrapper">
+               <div class="stopwatch">
+                  <div class="stopwatch-hand">
+                  </div>
+                  <div class="stopwatch-center"></div>
+                  <div class="stopwatch-numbers five">5</div>
+                  <div class="stopwatch-numbers ten">10</div>
+                  <div class="stopwatch-numbers fifteen">15</div>
+                  <div class="stopwatch-numbers twenty">20</div>
+                  <div class="stopwatch-numbers twenty-five">25</div>
+                  <div class="stopwatch-numbers thirty">30</div>
+                  <div class="stopwatch-numbers thirty-five">35</div>
+                  <div class="stopwatch-numbers fourty">40</div>
+                  <div class="stopwatch-numbers fourty-five">45</div>
+                  <div class="stopwatch-numbers fifty">50</div>
+                  <div class="stopwatch-numbers fifty-five">55</div>
+                  <div class="stopwatch-numbers sixty">60</div>
+               </div>
+               <div class="stopwatch-bottom">
+                  <div class="stopwatch-timer">
+                     00:00:00:00
+                  </div>
+                  <div class="stopwatch-controls" data-status="paused" data-need-reset="false">
+                     <i></i>
+                     <i class="fa-solid fa-play playpause"></i>
+                     <i class="fa-solid fa-pause playpause"></i>
+                     <i class="fa-solid fa-rotate-right"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page active" id="clock-page">
+            <div class="wrapper">
+               <div class="clock">
+                  <div class="hand hours"></div>
+                  <div class="hand minutes"></div>
+                  <div class="hand seconds"></div>
+                  <div class="point"></div>
+                  <div class="marker">
+                     <span class="marker__1"></span>
+                     <span class="marker__2"></span>
+                     <span class="marker__3"></span>
+                     <span class="marker__4"></span>
+                  </div>
+               </div>
+               <div class="clock-texts">
+                  <div class="clock-text clock-date">18 November, 2022</div>
+                  <div class="weekdays">
+                     <div class="button weekday saturday">Sat</div>
+                     <div class="button weekday sunday">Sun</div>
+                     <div class="button weekday monday">Mon</div>
+                     <div class="button weekday tuesday">Tue</div>
+                     <div class="button weekday wednesday">Wed</div>
+                     <div class="button weekday thursday">Thu</div>
+                     <div class="button weekday friday">Fri</div>
+                  </div>
+                  <div class="clock-hour-text">
+                     <div class="clock-text clock-hour">
+                        01:18:24
+                     </div>
+                     <div class="ampm">AM</div>
+                  </div>
+                  <div class="timezone">
+                     GMT+0330 (Iran Standard Time)
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page" id="countdown-page">
+            <div class="wrapper">
+               <div class="cd-columns">
+                  <div class="hour">
+                     <div class="col col-hour-tens">
+                        <div class="number tens">0</div>
+                        <div class="number tens">1</div>
+                        <div class="number tens">2</div>
+                     </div>
+                     <div class="col col-hour-ones">
+                        <div class="number ones">0</div>
+                        <div class="number ones">1</div>
+                        <div class="number ones">2</div>
+                        <div class="number ones">3</div>
+                        <div class="number ones">4</div>
+                        <div class="number ones">5</div>
+                        <div class="number ones">6</div>
+                        <div class="number ones">7</div>
+                        <div class="number ones">8</div>
+                        <div class="number ones">9</div>
+                     </div>
+                  </div>
+                  <div class="minute">
+                     <div class="col col-minute-tens">
+                        <div class="number tens">0</div>
+                        <div class="number tens">1</div>
+                        <div class="number tens">2</div>
+                        <div class="number tens">3</div>
+                        <div class="number tens">4</div>
+                        <div class="number tens">5</div>
+                     </div>
+                     <div class="col col-minute-ones">
+                        <div class="number ones">0</div>
+                        <div class="number ones">1</div>
+                        <div class="number ones">2</div>
+                        <div class="number ones">3</div>
+                        <div class="number ones">4</div>
+                        <div class="number ones">5</div>
+                        <div class="number ones">6</div>
+                        <div class="number ones">7</div>
+                        <div class="number ones">8</div>
+                        <div class="number ones">9</div>
+                     </div>
+                  </div>
+                  <div class="second">
+                     <div class="col col-second-tens">
+                        <div class="number tens">0</div>
+                        <div class="number tens">1</div>
+                        <div class="number tens">2</div>
+                        <div class="number tens">3</div>
+                        <div class="number tens">4</div>
+                        <div class="number tens">5</div>
+                     </div>
+                     <div class="col col-second-ones">
+                        <div class="number ones">0</div>
+                        <div class="number ones">1</div>
+                        <div class="number ones">2</div>
+                        <div class="number ones">3</div>
+                        <div class="number ones">4</div>
+                        <div class="number ones">5</div>
+                        <div class="number ones">6</div>
+                        <div class="number ones">7</div>
+                        <div class="number ones">8</div>
+                        <div class="number ones">9</div>
+                     </div>
+                  </div>
+               </div>
+               <div class="cd-main-numbers">
+                  <div class="number hour-tens">0</div>
+                  <div class="number hour-ones">0</div>
+                  <div class="number minute-tens">0</div>
+                  <div class="number minute-ones">0</div>
+                  <div class="number second-tens">0</div>
+                  <div class="number second-ones">0</div>
+               </div>
+               <div class="cd-controls" data-status="paused">
+                  <div class="cd-start">START</div>
+                  <div class="cd-stop">STOP</div>
+               </div>
+               <div class="cd-mid-columns">
+                  <div class="column-1">:</div>
+                  <div class="column-2">:</div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="./dist/main.js"></script>
+</body>
+
+</html>

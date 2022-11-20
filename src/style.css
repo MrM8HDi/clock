@@ -1,0 +1,623 @@
+:root {
+    --marker-small: 3px;
+    --marker-large: 11px;
+    --primary-light: #8abdff;
+    --primary: #6d5dfc;
+    --primary-dark: #5b0eeb;
+    --white: #FFFFFF;
+    --greyLight-1: #E4EBF5;
+    --greyLight-2: #c8d0e7;
+    --greyLight-3: #bec8e4;
+    --greyDark: #9baacf;
+    --stopwatch-hand-color: #95bd12;
+
+    --cd-lighter: #f9fbfd;
+    --cd-light: #dfe6f6;
+    --cd-bg: #C4D2EF;
+    --cd-dark: #a9bee8;
+    --cd-primary: #3e6ccb;
+}
+
+body {
+    background: linear-gradient(to right, #bbb, #999);
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+.container {
+    background: #00000020;
+    backdrop-filter: blur(100px);
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.pages {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page {
+    height: 100%;
+    width: 600px;
+    background: #00000050;
+    margin: 0 10px 0 10px;
+    border-radius: 20px;
+    transition: width 0.5s ease;
+    overflow: hidden;
+}
+
+/* fix buttons avoiding activating page bug */
+.page:not(.active) * {
+    pointer-events: none;
+}
+
+.page:not(.active) {
+    cursor: pointer;
+    width: 70px;
+}
+
+.page:not(.active) .wrapper {
+    transform: scale(0.75);
+}
+
+.page:not(.active)#clock-page {
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+}
+
+.wrapper {
+    width: 600px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 1.5s;
+}
+
+#clock-page {
+    background-size: auto 100%;
+    background-image: url('./images/winter-landscape.jpg');
+    background-position: center center;
+    background-blend-mode: lighten;
+    background-color: #e4ebf5;
+    box-sizing: border-box;
+    transition: background-size 1.5s, width 0.5s;
+}
+
+/*  CLOCK  */
+.clock {
+    margin: auto;
+    width: 12rem;
+    height: 12rem;
+    justify-self: center;
+    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.clock .hand {
+    position: absolute;
+    transform-origin: bottom;
+    bottom: 6rem;
+    border-radius: 0.2rem;
+    z-index: 200;
+}
+
+.clock .hours {
+    width: 0.4rem;
+    height: 3.2rem;
+    background: var(--greyLight-3);
+}
+
+.clock .minutes {
+    width: 0.4rem;
+    height: 4.6rem;
+    background: var(--greyDark);
+}
+
+.clock .seconds {
+    width: 0.2rem;
+    height: 5.2rem;
+    background: var(--primary);
+}
+
+.clock .point {
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--primary);
+    z-index: 300;
+}
+
+.clock .marker {
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2), inset -0.2rem -0.2rem 0.5rem var(--white);
+}
+
+.clock .marker::after {
+    content: "";
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    box-shadow: inset 1px 1px 1px var(--greyLight-2), inset -1px -1px 1px var(--white);
+    border-radius: 50%;
+    top: 20%;
+    left: 20%;
+    filter: blur(1px);
+}
+
+.clock .marker__1,
+.clock .marker__2,
+.clock .marker__3,
+.clock .marker__4 {
+    position: absolute;
+    border-radius: 0.1rem;
+    box-shadow: inset 1px 1px 1px var(--greyLight-2), inset -1px -1px 1px var(--white);
+}
+
+.clock .marker__1,
+.clock .marker__2 {
+    width: 0.2rem;
+    height: 0.6rem;
+    left: 5.6rem;
+}
+
+.clock .marker__3,
+.clock .marker__4 {
+    width: 0.6rem;
+    height: 0.2rem;
+    top: 5.6rem;
+}
+
+.clock .marker__1 {
+    top: 2%;
+}
+
+.clock .marker__2 {
+    top: 98%;
+    transform: translateY(-0.6rem);
+}
+
+.clock .marker__3 {
+    left: 2%;
+}
+
+.clock .marker__4 {
+    left: 98%;
+    transform: translateX(-0.6rem);
+}
+
+.months {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.clock-text {
+    color: var(--primary);
+    font-size: 1.5rem;
+    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.clock-date {
+    margin: auto;
+    margin-top: 25px;
+    width: fit-content;
+}
+
+.clock-hour-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+.ampm {
+    color: var(--primary);
+    font-size: 1.5rem;
+    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    padding: 10px 7px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.timezone {
+    margin: auto;
+    margin-top: 40px;
+    width: fit-content;
+    opacity: 0.5;
+}
+
+.weekdays {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#clock-page .button {
+    box-shadow: inset 1px 1px 1px var(--greyLight-2), inset -1px -1px 1px var(--white);
+    padding: 5px 15px;
+    color: var(--greyDark);
+    font-family: sans-serif;
+    border-radius: 10px;
+    user-select: none;
+}
+
+#clock-page .button.active {
+    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    padding: 5px 15px;
+    color: var(--primary-dark);
+    font-family: sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ffffff;
+}
+
+#clock-page .button.active:active {
+    box-shadow: inset 1px 1px 1px var(--greyLight-2), inset -1px -1px 1px var(--white);
+    padding: 5px 15px;
+    color: var(--primary-dark);
+    font-family: sans-serif;
+    border-radius: 10px;
+}
+
+#stopwatch-page {
+    background-color: #2e3c49;
+    background-image: linear-gradient(to bottom, rgba(61, 79, 95, 0.85) 0%, rgba(27, 36, 45, 0.85) 100%), url('./images/stars.jpg');
+    background-position: center center;
+    background-size: auto 120%;
+    position: relative;
+    transition: background-size 1.5s, width 0.5s;
+    background-repeat: no-repeat;
+}
+
+.page:not(.active)#stopwatch-page {
+    background-size: auto 100%;
+}
+
+.stopwatch {
+    width: 220px;
+    height: 220px;
+    background: white;
+    border: 15px solid #283441;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -80%);
+    border-radius: 50%;
+    transition: transform 0.4s;
+}
+
+.stopwatch:active {
+    transform: translate(-50%, -80%) scale(0.9);
+}
+
+.stopwatch .half-sec {
+    width: 1px;
+    height: 10px;
+    background: #7e7e7e;
+    position: absolute;
+}
+
+.stopwatch-hand {
+    width: 45px;
+    height: 145px;
+    clip-path: polygon(60% 92%, 50% 95%, 40% 92%, 47% 8%, 53% 8%);
+    background: var(--stopwatch-hand-color);
+    position: absolute;
+    left: 40%;
+    top: -3.1%;
+    transform-origin: 50% 81%;
+    transform: rotate(0deg);
+    z-index: 2;
+}
+
+.stopwatch-center {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid var(--stopwatch-hand-color);
+    position: absolute;
+    background: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.stopwatch-numbers {
+    color: #7e7e7e;
+    position: absolute;
+    font-size: 0.7rem;
+    user-select: none;
+}
+
+.stopwatch-numbers.five {
+    left: 64%;
+    top: 19%;
+}
+
+.stopwatch-numbers.ten {
+    left: 73%;
+    top: 30%;
+}
+
+.stopwatch-numbers.fifteen {
+    left: 78%;
+    top: 46%;
+}
+
+.stopwatch-numbers.twenty {
+    left: 73%;
+    top: 62%;
+}
+
+.stopwatch-numbers.twenty-five {
+    left: 64%;
+    top: 74%;
+}
+
+.stopwatch-numbers.thirty {
+    left: 47%;
+    top: 80%;
+}
+
+.stopwatch-numbers.thirty-five {
+    left: 30%;
+    top: 74%;
+}
+
+.stopwatch-numbers.fourty {
+    left: 21%;
+    top: 62%;
+}
+
+.stopwatch-numbers.fourty-five {
+    left: 16%;
+    top: 46%;
+}
+
+.stopwatch-numbers.fifty {
+    left: 21%;
+    top: 30%;
+}
+
+.stopwatch-numbers.fifty-five {
+    left: 30%;
+    top: 19%;
+}
+
+.stopwatch-numbers.sixty {
+    left: 47%;
+    top: 15%;
+}
+
+.stopwatch-bottom {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    width: 100%;
+}
+
+.stopwatch-timer {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 100;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.stopwatch-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 1.8rem;
+    color: white;
+    position: relative;
+    width: 120px;
+    margin: auto;
+    margin-top: 30px;
+    transition: 0.15s;
+    background: #00000050;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.stopwatch-controls[data-need-reset="false"] .fa-rotate-right {
+    opacity: 0;
+}
+
+.stopwatch-controls[data-need-reset="false"] {
+    width: 20px;
+}
+
+.stopwatch-controls i {
+    cursor: pointer;
+    transition: transform 0.1s ease-out;
+}
+
+.stopwatch-controls i:active {
+    transform: scale(0.9);
+}
+
+.stopwatch-controls[data-status="paused"] .fa-pause {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.stopwatch-controls[data-status="started"] .fa-play {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.playpause {
+    position: absolute;
+    left: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+}
+
+.reset-animation {
+    transform: rotate(0deg);
+    transition: 0.3s cubic-bezier(0.71, 2, 0.71, 0.63);
+}
+
+#countdown-page {
+    background: linear-gradient(-45deg, #c4d2ef, #dfe6f6);
+    position: relative;
+}
+
+.cd-columns {
+    position: absolute;
+    left: 50%;
+    top: 105%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cd-columns .hour,
+.cd-columns .minute,
+.cd-columns .second {
+    display: flex;
+    margin: 20px;
+}
+
+.cd-columns .col {
+    margin: 0 15px;
+    background-color: var(--cd-light);
+    width: 50px;
+    box-shadow: -5px -5px 20px #f9fbfd, 5px 5px 10px #a9bee8;
+    height: fit-content;
+    border-radius: 10px;
+    flex-direction: column-reverse;
+    transform: translateY(0px);
+    cursor: pointer;
+    user-select: none;
+}
+
+.cd-columns .col .number {
+    display: inline-block;
+    color: var(--cd-lighter);
+    width: 70px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 2rem;
+    border-radius: 50%;
+    position: relative;
+    left: -10px;
+    pointer-events: none;
+}
+
+.cd-main-numbers {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform:Translate(-50%, -50%);
+    gap: 10px;
+}
+
+.cd-main-numbers .minute-tens {
+    margin-left: 40px;
+}
+
+.cd-main-numbers .minute-ones {
+    margin-right: 40px;
+}
+
+.cd-main-numbers .number {
+    background: #00000030;
+    background-color: var(--cd-light);
+    box-shadow: -5px -5px 20px #f9fbfd, 5px 5px 10px #a9bee8;
+    color: var(--cd-primary);
+    font-weight: bold;
+    font-size: 2.3rem;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    border-radius: 50%;
+    user-select: none;
+}
+
+.cd-controls {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.cd-controls div {
+    background: #00000050;
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+    background-color: var(--cd-light);
+    box-shadow: -5px -5px 20px #f9fbfd, 5px 5px 10px #a9bee8;
+    display: none;
+    user-select: none;
+}
+
+.cd-controls div:active {
+    transform: scale(0.95);
+}
+
+.cd-controls .cd-start {
+    border: 2px solid rgb(23, 201, 23);
+}
+
+.cd-controls .cd-stop {
+    border: 2px solid rgb(201, 23, 23);
+}
+
+.cd-controls[data-status="started"] .cd-stop {
+    display: block;
+}
+
+.cd-controls[data-status="paused"] .cd-start {
+    display: block;
+}
+
+.cd-mid-columns {
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--cd-primary);
+}
+
+.cd-mid-columns .column-1 {
+    position: absolute;
+    left: 180px;
+    top:210px;
+}
+
+.cd-mid-columns .column-2 {
+    position: absolute;
+    left: 380px;
+    top:210px;
+}
